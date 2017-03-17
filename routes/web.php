@@ -12,13 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::resource('dict', 'DictController');
