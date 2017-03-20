@@ -1,0 +1,102 @@
+/* status.blade.php 會用到 */
+.huge {
+    font-size: 40px;
+}
+.panel-green {
+    border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: white;
+    background-color: #5cb85c;
+}
+.panel-green > a {
+    color: #5cb85c;
+}
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+.panel-red {
+    border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: white;
+    background-color: #d9534f;
+}
+.panel-red > a {
+    color: #d9534f;
+}
+.panel-red > a:hover {
+    color: #b52b27;
+}
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+.panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: white;
+    background-color: #f0ad4e;
+}
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+    color: #df8a13;
+}
+
+/* 新面板顏色 */
+.err{
+    float:left;
+    width:100px;    /* 這寬度再研究看看 */
+    height:100px;
+    color: #FFF;
+    /* background-color: #999; */
+    margin: 8px;
+    padding: 8px;
+    text-align:Center; /* 文字置中 */
+    border-radius: 15px;
+    box-shadow:4px 4px 10px rgba(20%,20%,20%,0.5);   /* 陰影 */
+}
+.err_count{
+    font-size:36px;
+    font-weight:bold;
+    font-family:"consolas";
+    text-align: center;
+}
+.err_title{
+    color:#FFF;
+    font-size: 14px;
+    text-align: center;
+}
+/* 面板顏色 */
+/*紅色*/
+.err-red{
+    background-color: #D9534F;
+}
+/*黃色*/
+.err-yellow{
+    background-color: #FFBB00;
+}
+/*綠色*/
+.err-green{
+    background-color: #5cb85c;
+}
+/*藍色*/
+.err-blue{
+    background-color: #337ab7;
+}
+/*灰色*/
+.err-gray{
+    background-color: #3c3c3c;
+}
+
+/* 工具列 */
+.toolbar {
+    padding: 20px;
+    background-color: #F3F3F3;
+}
+.toolbar2 {
+    padding: 10px;
+    background-color: #F3F3F3;
+}

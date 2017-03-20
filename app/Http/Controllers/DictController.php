@@ -16,8 +16,11 @@ class DictController extends Controller
     {
         //
         $dict = \App\Dictionary::all();
-        var_dump($dict);
 
+        //var_dump($dict);
+        //$dict = array(1,2,3,4,5,);
+
+        return view('dictionary', ["dict"=>$dict]);
     }
 
     /**
