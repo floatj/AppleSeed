@@ -9,4 +9,6 @@ class Dictionary extends Model
     //
     protected $table = 'dictionary';
 
+
+
 }

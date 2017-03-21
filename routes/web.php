@@ -11,12 +11,21 @@
 |
 */
 
+//首頁
 Route::get('/', function () {
     return view('dashboard');
 });
 
+//測試頁
 Route::get('/test', function () {
     return view('test');
 });
 
+//Dictionary -- CreateFromJson
+Route::get('/dict/create/json', 'DictController@create_from_json');
+
+//Dictionary -- Search
+Route::get('/dict/search', 'DictController@search');
+
+//Dictionary -- default resource router
 Route::resource('dict', 'DictController');

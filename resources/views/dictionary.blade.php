@@ -8,15 +8,23 @@
 
 
 @section('content')
-    <button  name="add_button" value="0" class="btn btn-primary">Create</button><br /><br />
+    <div style="padding:20px; margin-bottom:20px; background-color:#ffebe2; color:#FFF;">
+        <a href="{{ action('DictController@create') }}">
+            <button name="create_button" id="create_button" class="btn btn-primary">Create</button>
+        </a>
+        <a href="{{ action('DictController@create_from_json') }}">
+            <button name="create_from_json_button" id="create_from_json_button" class="btn btn-warning">Create from json</button>
+        </a>
+    </div>
+
     <table class="table table-striped table-hover ">
         <thead>
         <tr class="info">
+            <th></th>
             <th>id</th>
             <th>keyword</th>
             <th>result</th>
-            <th>locale</th>
-            <th>state</th>
+            <th>classes</th>
             <th>created_at</th>
             <th>updated_at</th>
             <th>Switch</th>
@@ -26,16 +34,16 @@
         <tbody>
         @foreach ($dict as $word)
             <tr>
+                <td><input type="checkbox" /></td>
                 <td>{{ $word->id }}</td>
-                <td>{{ $word->keyword }}</td>
-                <td>{{ $word->result }}</td>
-                <td>{{ $word->locale }}</td>
-                <td>{{ $word->state }}</td>
+                <td>{{ $word->key }}</td>
+                <td>{{ $word->value }}</td>
+                <td>{{ $word->class }}</td>
                 <td>
-                    {{ date('Y-m-d H:i:s', $word->created_at) }}
+                    {{$word->created_at}}
                 </td>
                 <td>
-                    {{ date('Y-m-d H:i:s', $word->updated_at) }}
+                    {{$word->updated_at}}
                 </td>
                 <td>
                     @if($word->state)   {{--開關--}}
@@ -45,8 +53,8 @@
                     @endif
                 </td>
                 <td>
-                    <button  name="edit_button" value="0" class="btn btn-warning">編輯</button>
-                    <button  name="del_button" value="0" class="btn btn-danger">刪除</button>
+                    <button  name="edit_button" value="0" class="btn btn-warning">Modify</button>
+                    <button  name="del_button" value="0" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         @endforeach

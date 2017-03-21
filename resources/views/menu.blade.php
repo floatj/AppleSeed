@@ -35,17 +35,21 @@
         <li><a href="#">所有信件</a></li>
         <li><a href="#">統計圖表</a></li>
         -->
-                <!--一般信件-->
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dictionary<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{action('DictController@index')}}">List</a></li>
+                        <li><a href="{{action('DictController@create')}}">Create</a></li>
+                        <li><a href="{{action('DictController@create_from_json')}}">Create from Json</a></li>
+                        <li><a href="{{action('DictController@search')}}">Search</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">List</a></li>
+                        <li><a href="{{action('DictController@create')}}">Create</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
