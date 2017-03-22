@@ -40,11 +40,34 @@ class DictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search()
+    public function showSearch()
     {
-        //搜尋頁面
         return view('dictionary/search');
 
+    }
+
+    public function search(Request $request)
+    {
+        $input_data = $request->input('json_data');
+        $results = array();
+
+        if(!empty($input_data)) {
+            //var_dump($parm);
+
+            $search_array = json_decode($input_data, true);
+            //print_r($search_array);
+
+
+            //Model搜尋方法
+            $dict = new Dictionary();
+            $results = $dict->getResult($search_array);
+        }
+
+        //print_r($result);
+        //exit;
+
+        //搜尋頁面
+        return view('dictionary/search', array('json_data' => $input_data ,'results' => $results));
     }
 
     /**
