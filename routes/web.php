@@ -24,9 +24,13 @@ Route::get('/test', function () {
 //Dictionary -- CreateFromJson
 Route::get('/dict/create/json', 'DictController@create_from_json');
 
-//Dictionary -- Search
+//Dictionary -- Search by key
 Route::get('/dict/search', 'DictController@showSearch');
 Route::post('/dict/search', 'DictController@search');
+
+//Dictionary -- Search Collection
+Route::get('/dict/searchCollection', 'DictController@showSearchCollection');
+Route::post('/dict/searchCollection', 'DictController@searchCollection');
 
 //Dictionary -- default resource router
 Route::resource('dict', 'DictController');

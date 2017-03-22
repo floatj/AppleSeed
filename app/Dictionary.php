@@ -9,20 +9,16 @@ class Dictionary extends Model
     //DB Table 設定為 "dictionary"
     protected $table = 'dictionary';
 
-    //搜尋
+    //搜尋 key->value
     public function getResult($search_array)
     {
-        //搜尋欄位
-        $selectColumn = array("value");
-
-        //回傳陣列
+        $selectColumn = array("key", "value");
         $ret = array();
 
-        //query builder
         foreach ($search_array as $search_key)
         {
             $value = self::select($selectColumn)
-                //->Where('key', $search_key)
+                //->Where('key', $search_key)               // =
                 ->Where('key', "LIKE", "%$search_key%" )    //wildcard search
                 ->OrderBy('id', 'ASC')
                 ->get()
@@ -30,6 +26,16 @@ class Dictionary extends Model
             array_push($ret, $value);
         }
 
+        return $ret;
+    }
+
+    //取出所有 key-value 資料
+    public function getAllData()
+    {
+        $selectColumn = array("key", "value");
+        $ret = self::select($selectColumn)
+            ->get()
+            ->toArray();
         return $ret;
     }
 

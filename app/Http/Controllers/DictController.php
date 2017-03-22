@@ -40,34 +40,61 @@ class DictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //顯示搜尋單詞
     public function showSearch()
     {
         return view('dictionary/search');
 
     }
 
+    //執行搜尋單詞
     public function search(Request $request)
     {
         $input_data = $request->input('json_data');
         $results = array();
 
         if(!empty($input_data)) {
-            //var_dump($parm);
-
             $search_array = json_decode($input_data, true);
-            //print_r($search_array);
 
+            if(empty($search_array)) {
+                //json 解析失敗
+                return view('dictionary/search', array('json_data' => $input_data ,'results' => -1));
+            }
 
-            //Model搜尋方法
+            //搜尋Key
             $dict = new Dictionary();
             $results = $dict->getResult($search_array);
         }
 
-        //print_r($result);
-        //exit;
-
-        //搜尋頁面
+        //回搜尋頁面
         return view('dictionary/search', array('json_data' => $input_data ,'results' => $results));
+    }
+
+    //顯示搜尋集合
+    public function showSearchCollection()
+    {
+        return view('dictionary/searchCollection');
+
+    }
+    //執行搜尋集合
+    public function searchCollection(Request $request)
+    {
+        $input_data = $request->input('json_data');
+
+        //資料為空
+        if (empty($input_data)) return view('dictionary/searchCollection', array('json_data' => $input_data));
+
+        //解析輸入資料
+        $search_array = json_decode($input_data, true);
+        if (empty($search_array)) {
+            //json 解析失敗
+            return view('dictionary/searchCollection', array('json_data' => $input_data, 'err' => -1));
+        }
+
+        //@TODO: 逐條比對抽出成為獨立 function
+        $results = $this->searchArrayKeyword($search_array);
+
+        return view('dictionary/searchCollection', array('json_data' => $input_data ,'results' => $results));
     }
 
     /**
@@ -113,7 +140,7 @@ class DictController extends Controller
 
         //model 操作
         $dict = new Dictionary();
-        $dict::insert($input_array);
+        $dict::insert($input_array);    //用 insert 的話不會新增 timestamp
 
         /*
         foreach($input_array as $input) {
@@ -173,4 +200,43 @@ class DictController extends Controller
     {
         //
     }
+
+    //逐條比對並回傳陣列(含原始字串, key, value, class 及 過濾後字串)
+    public function searchArrayKeyword($search_array)
+    {
+        //取得DB內所有 key-value 資料
+        $dict = \App\Dictionary::all();
+        $results = array();
+
+        //逐條比對每一筆輸入資料
+        foreach ($search_array as $item) {
+            foreach ($dict as $word) {
+                //搜尋 pattern 為字典每一筆資料的 key
+                $pattern = $word->key;
+                if (preg_match("/$pattern/i", $item)) {
+                    //有找到資料，進行取代
+                    //@todo: 取代的方式可改成可選擇的參數之類的
+                    $item_replaced = preg_replace("/$pattern/i", "***關鍵字已被屏蔽***",$item);
+
+                    //原始$item, key, value, class, 取代過的 $item
+                    $ret = array("origin"=> $item ,"key" => $word->key, "value" => $word->value, "class" => $word->class, "filter" => $item_replaced);
+                    array_push($results, $ret);
+
+                    //繼續找下一筆輸入資料
+                    continue 2;
+                }
+            }
+        }
+
+        //debug
+
+        echo "<pre>";
+        print_r($results);
+        echo "</pre>";
+        exit;
+
+        return $results;
+    }
+
+    //...
 }

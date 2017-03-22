@@ -42,7 +42,8 @@
                         <li><a href="{{action('DictController@index')}}">List</a></li>
                         <li><a href="{{action('DictController@create')}}">Create</a></li>
                         <li><a href="{{action('DictController@create_from_json')}}">Create from Json</a></li>
-                        <li><a href="{{action('DictController@search')}}">Search</a></li>
+                        <li><a href="{{action('DictController@search')}}">Search by Key</a></li>
+                        <li><a href="{{action('DictController@showSearchCollection')}}">Search from Collection</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
