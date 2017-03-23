@@ -8,6 +8,7 @@
 
 
 @section('content')
+    <!--工具列-->
     <div style="padding:20px; margin-bottom:20px; background-color:#ffebe2; color:#FFF;">
         <a href="{{ action('DictController@create') }}">
             <button name="create_button" id="create_button" class="btn btn-primary">Create</button>

@@ -175,7 +175,7 @@ class DictController extends Controller
      */
     public function edit($id)
     {
-        //ㄑ
+        //
     }
 
     /**
@@ -216,7 +216,7 @@ class DictController extends Controller
                 if (preg_match("/$pattern/i", $item)) {
                     //有找到資料，進行取代
                     //@todo: 取代的方式可改成可選擇的參數之類的
-                    $item_replaced = preg_replace("/$pattern/i", "***關鍵字已被屏蔽***",$item);
+                    $item_replaced = preg_replace("/$pattern/i", "<<關鍵字已被過濾>>",$item);
 
                     //原始$item, key, value, class, 取代過的 $item
                     $ret = array("origin"=> $item ,"key" => $word->key, "value" => $word->value, "class" => $word->class, "filter" => $item_replaced);
@@ -229,12 +229,12 @@ class DictController extends Controller
         }
 
         //debug
-
+        /*
         echo "<pre>";
         print_r($results);
         echo "</pre>";
         exit;
-
+        */
         return $results;
     }
 

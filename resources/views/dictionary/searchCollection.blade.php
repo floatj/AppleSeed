@@ -23,9 +23,30 @@
     </form>
     @if(!empty($results))
         <h1>Results:</h1>
-        @foreach($results as $item)
-            {{ $item->key }} -> {{ $item->value }}<br/>
-        @endforeach
+        <table class="table table-striped table-hover fixed-table">
+            <thead>
+            <tr class="">
+                <th>編號</th>
+                <th>原始字串</th>
+                <th>key</th>
+                <th>value</th>
+                <th>class</th>
+                <th>過濾後字串</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($results as $item)
+                <tr>
+                    <td></td>
+                    <td>{{ $item['origin'] }}</td>
+                    <td>{{ $item['key'] }}  </td>
+                    <td>{{ $item['value'] }}</td>
+                    <td>{{ $item['class'] }}</td>
+                    <td>{{ $item['filter'] }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+        </table>
     @endif
 @stop
 
