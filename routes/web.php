@@ -34,3 +34,8 @@ Route::post('/dict/searchCollection', 'DictController@searchCollection');
 
 //Dictionary -- default resource router
 Route::resource('dict', 'DictController');
+
+//Dictionary API -- Search Collection
+Route::get('api/search/', ['uses' => 'apiController@search']);
+Route::get('api/search/{parm}', 'apiController@search');
+//Route::get('api/search/{parm}', ['uses' => 'apiController@search']);
